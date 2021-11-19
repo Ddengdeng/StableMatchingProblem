@@ -1,0 +1,45 @@
+
+@font-face {
+    font-family: 'NeueWorld CondensedRegular';
+    src: url("../fonts/NeueWorld-CondensedRegular.otf");
+}
+@font-face {
+    font-family: 'Futura Bold font';
+    src: url("../fonts/Futura Bold font.ttf");
+}
+@font-face {
+    font-family: 'Signatura Monoline';
+    src: url("../fonts/Signatura Monoline.otf");
+}
+@font-face {
+    font-family: 'Hangyaku GVnm';
+    src: url("../fonts/Hangyaku-GVnm.ttf");
+}
+@font-face {
+    font-family: 'Breakable';
+    src: url("../fonts/Breakable.otf");
+}
+
+body{
+    height: 100% !important;
+}
+
+.neueworld{
+    font-family: 'NeueWorld CondensedRegular';
+}
+.futura{
+    font-family: 'Futura Bold font';
+}
+.signatura {
+    font-family: 'Signatura Monoline';
+}
+.hangyaku{
+    font-family: 'Hangyaku GVnm';
+}
+.breakable{
+    font-family: 'Breakable';
+}
+
+.bg-pitch{
+    background-image: url("/../images/background.jpg");
+}
