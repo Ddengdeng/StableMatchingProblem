@@ -1,0 +1,126 @@
+﻿{% extends "base.html" %}
+{% block content %}
+
+<section>
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-12 h-100">
+                <div class="card">
+                    <div class="card-header bg-dark text-white">
+                        <h1 class="my-3 ">Stable Marriage and Lattice Structure Generator</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-8 my-3">
+                                <p class="h5">
+                                   We can generate random preference lists or allow user to enter their own instances.
+                                   After that, the stable matching result and the lattice structure will show on the screen.
+
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row py-3 bg-secondary rounded-pill"></div>
+                        <div class="row my-3 card-deck">
+                            <div class="col-6">
+                                <div class="card h-100">
+                                    <div class="card-header">
+                                        <h2>Randomly Generate</h2>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="h5 my-3">
+                                            Please enter an integer from 2 to 9(lower than 2 will show 2 and more than 9 will show 9),
+                                            then you can get the random
+                                            preference lists and see the stable matching results and lattice structure.
+                                        </p>
+                                        <form class="form-inline float-right"
+                                              action="{% url 'results' %}"
+                                              method="post">
+                                            <div class="form-group mx-sm-3 mb-2">
+                                                <label for="" class="sr-only">Password</label>
+                                                <input type="number"
+                                                       oninput="if (value>9)value=9;if (value<2)value=2"
+                                                       class="form-control"
+                                                       name="person_number"
+                                                       placeholder="No.of men/women"
+                                                       value="{{ person_number }}">{% csrf_token %}
+                                            </div>
+                                            <button type="submit" class="btn btn-primary mb-2">Go!</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="card h-100">
+                                    <div class="card-header">
+                                        <h2>Input Full List</h2>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="h5 my-3">
+                                            Please enter the preference lists by yourself and see the stable matching
+                                            result and the lattice structure.
+                                            The format of TXT input file follows requirements underneath: <br>
+                                            Number of men (= number of women) <br>
+                                            List of men's preferences (starting from the first man) <br>
+                                            List of women's preferences (starting with the first woman) <br>
+                                            Recommended length of preference lists is between 2 and 9. <br>
+                                            e.g.:<br>
+                                            2 # Initialize: 2 men/women <br>
+                                            1 2 # The preference list of m1 <br>
+                                            2 1 # The preference list of m2 <br>
+                                            1 2 # The preference list of w1 <br>
+                                            2 1 # The preference list of w2 <br>
+                                        </p>
+                                        <button type="button"
+                                                class="btn btn-primary float-right"
+                                                data-toggle="modal"
+                                                data-target="#exampleModal">
+                                            Input List
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Input Lists</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+{#                <form>#}
+{#                    <div class="form-group">#}
+{#                        <label for="exampleFormControlTextarea1">Men's Preference List</label>#}
+{#                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>#}
+{#                    </div>#}
+{#                    <div class="form-group">#}
+{#                        <label for="exampleFormControlTextarea1">Women's Preference List</label>#}
+{#                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>#}
+{#                    </div>#}
+{#                </form>#}
+                <form method="post" enctype="multipart/form-data" action="{% url 'results' %}">
+                    <div class="form-group">
+                        <label for="exampleFormControlFile1">Example file input</label>
+                        <input type="file" class="form-control-file" id="inputfile" name="inputfile">{% csrf_token %}
+                    </div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Go!</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

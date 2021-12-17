@@ -1,0 +1,52 @@
+﻿{% extends "base.html" %}
+{% block content %}
+
+<section>
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-12 h-100">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="my-3">Stable Marriage Problem</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="col-6 offset-4">
+                            <p class="h5 my-5">
+                                The stable marriage problem (also stable matching problem or SM)
+                                is the problem of finding a stable matching between two equally sized sets of elements
+                                given an ordering of preferences for each element.
+                                A matching is a bijection from the elements of one set to the elements of the other set.
+                                Using brute-force algorithm to start the search at men's preference lists,
+                                then generating the stable matching from men-optimal to women-optimal matching.
+                                The result is both men-optimal and women-optimal if only gets one result.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row my-5">
+            <div class="col-12 h-100">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="my-3 float-right">Lattice Structure</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="col-6 offset-2">
+                            <p class="h5 my-5">
+                                The lattice structure of SM is a kind of Hasse diagram represents the relationship
+                                between every stable matching result. Every stable matching can transfer to another through
+                                some rotations, and the lattice structure represents the simplest way from one result
+                                to another.The top is man-optimal result and the bottom is woman-optimal result, which
+                                means men’s preference for results decreases gradually.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

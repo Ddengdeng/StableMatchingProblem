@@ -1,29 +1,86 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Stable Marriage</title>
-    <link href="{% static '/css/common.css' %}" rel="stylesheet">
-    <link href="{% static '/css/bootstrap-4.4.1-dist/css/bootstrap.min.css' %}" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-    <script src="{% static '/css/bootstrap-4.4.1-dist/js/bootstrap.min.js' %}"></script>
-    <script src="{% static '/js/echarts.min.js' %}"></script>
+﻿{% extends "base.html" %}
+{% block content %}
 
-</head>
-<body>
-    <nav class="navbar navbar-light navbar-expand-lg bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-link" href="#">Features</a>
-                <a class="nav-link" href="#">Pricing</a>
-                <a class="nav-link disabled">Disabled</a>
+<section>
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-12 bg-couple h-100">
+                <div class="col-6"></div>
+                <div class="col-4 offset-6">
+                    <div class="card my-5">
+                        <div class="card-header">
+                            <h2>Stable Matching</h2>
+                        </div>
+                        <div class="card-body">
+                            <p class="h5 my-3">
+                                A simple and convenient way to generate stable matching and get the
+                                visualisation of stable matching through lattice structure.
+                            </p>
+                            <a href="{% url 'algorithms' %}" class="btn btn-dark float-right mt-5">Start</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2"></div>
             </div>
         </div>
-    </nav>
-</body>
-</html>
+        <div class="row justify-content-center bg-secondary">
+            <h2 class="col-11 text-white">Introductions</h2>
+        </div>
+        <div class="row my-3">
+            <div class="col-4">
+                <div class="card ">
+                    <div class="card-header">
+                        <h4>STEP 1</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="h5 my-3">
+                            Get preference lists of men and women(randomly or user-input)
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card ">
+                    <div class="card-header">
+                        <h4>STEP 2</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="h5 my-3">
+                                Using brute-force algorithm to generate all stable matchings
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card ">
+                    <div class="card-header">
+                        <h4>STEP 3</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="h5 my-3">
+                                Display the diagram that represents the relationship
+                                between these stable matching results(lattice structure)
+                        </p>
+                    </div>
+                </div>
+            </div>
+{#            <div class="col-3">#}
+{#                <div class="card ">#}
+{#                    <div class="card-header">#}
+{#                        <h4>STEP 4</h4>#}
+{#                    </div>#}
+{#                    <div class="card-body">#}
+{#                        <p class="h5 my-3">#}
+{#                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.#}
+{#                                Aenean euismod bibendum laoreet.#}
+{#                                Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.#}
+{#                                Proin so#}
+{#                        </p>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

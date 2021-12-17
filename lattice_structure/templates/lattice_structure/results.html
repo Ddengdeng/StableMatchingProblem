@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<section>
+
+    <div class="row card-deck my-3">
+        <div class="card">
+            <div class="card-header">
+                <h1>Matching Result</h1>
+            </div>
+            <div class="card-body">
+                {% for each in sm_list %}
+                    <div class="row my-2">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>{{ each.0}}: </h5>
+                                </div>
+                                <div class="card-body">
+                                    <p>{{ each.1 }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h1>Lattice Structure Result</h1>
+            </div>
+            <div class="card-body">
+                <div class="align-self-center" id="main" style="width: 100%; min-height: 400px; height: 100%">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class=" col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Preference List</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <table class="align-self-center table">
+                                <thead>
+                                    <tr>
+                                        <td>Man ID</td>
+                                        <td>Preference List</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for each in men_list %}
+                                    <tr>
+                                        <th>{{ each.0 }}</th>
+                                        <th>{{ each.1 }}</th>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-6">
+                            <table class="align-self-center table">
+                                <thead>
+                                    <tr>
+                                        <td>Woman ID</td>
+                                        <td>Preference List</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for each in women_list %}
+                                    <tr>
+                                        <th>{{ each.0 }}</th>
+                                        <th>{{ each.1 }}</th>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+var chartDom = document.getElementById('main');
+var myChart = echarts.init(chartDom);
+var option;
+
+option = {
+  title: {
+    text: 'Basic Graph'
+  },
+  tooltip: {},
+  animationDurationUpdate: 1500,
+  animationEasingUpdate: 'quinticInOut',
+  series: [
+    {
+      type: 'graph',
+      layout: 'none',
+      symbolSize: 50,
+      roam: true,
+      label: {
+        show: true
+      },
+      edgeSymbol: ['circle', 'arrow'],
+      edgeSymbolSize: [4, 10],
+      data: [
+          {% for each in node_list %}
+        {
+          name: '{{each.0}}',
+          x: {{ each.1 }},
+          y: {{ each.2 }}
+        },
+          {% endfor %}
+
+      ],
+      // links: [],
+      links: [
+          {% for each in link_list %}
+        {
+          source: '{{ each.0 }}',
+          target: '{{ each.1 }}',
+          lineStyle: {
+            curveness: 0
+          }
+        },
+          {% endfor %}
+
+      ],
+      lineStyle: {
+        opacity: 0.9,
+        width: 2,
+        curveness: 0
+      }
+    }
+  ]
+};
+
+myChart.setOption(option);
+</script>
+{% endblock %}

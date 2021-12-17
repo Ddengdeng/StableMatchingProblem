@@ -1,0 +1,42 @@
+
+/*@font-face {*/
+/*    font-family: 'NeueWorld CondensedRegular';*/
+/*    src: url("../fonts/NeueWorld-CondensedRegular.otf");*/
+/*}*/
+/*@font-face {*/
+/*    font-family: 'Futura Bold font';*/
+/*    src: url("../fonts/Futura Bold font.ttf");*/
+/*}*/
+/*@font-face {*/
+/*    font-family: 'Signatura Monoline';*/
+/*    src: url("../fonts/Signatura Monoline.otf");*/
+/*}*/
+/*@font-face {*/
+/*    font-family: 'Hangyaku GVnm';*/
+/*    src: url("../fonts/Hangyaku-GVnm.ttf");*/
+/*}*/
+/*@font-face {*/
+/*    font-family: 'Breakable';*/
+/*    src: url("../fonts/Breakable.otf");*/
+/*}*/
+
+body{
+    height: 100% !important;
+}
+
+.bg-couple{
+    background: url("../images/couple.jpeg") no-repeat center;
+    background-size: cover;
+}
+
+.bg-opacity25{
+    background-color: rgba(0, 0, 0, 0.25)
+}
+
+.bg-opacity50{
+    background-color: rgba(255, 255, 255, 0.5)
+}
+
+.bg-opacity75{
+    background-color: rgba(255, 255, 255, 0.75)
+}

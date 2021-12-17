@@ -3,9 +3,8 @@
 #  Get stable matchings,
 #  Output these stable matchings for constructing the lattice structure
 
-from Partner import Partner
-import GenerateSM as GSM
-from LatticeStructure import LatticeStructure
+from . import Partner
+from . import LatticeStructure
 
 
 class SearchSM:
@@ -16,10 +15,16 @@ class SearchSM:
         self.women = []
         self.SMList = []
         for i in range(len(menList)):  # each line is a perference list
-            man = Partner(i, menList[i])  # construct the object of the Partner
+            mlist = []
+            for x in menList[i]:
+                mlist.append(x - 1)
+            man = Partner.Partner(i, mlist)  # construct the object of the Partner
             self.men.append(man)  # add the object to men's preference list
         for i in range(len(womenList)):  # the same as men
-            woman = Partner(i, womenList[i])
+            wlist = []
+            for x in womenList[i]:
+                wlist.append(x - 1)
+            woman = Partner.Partner(i, wlist)
             self.women.append(woman)
 
     # check whether the matching is stable
@@ -83,98 +88,6 @@ class SearchSM:
                 # go back to the previous layer to find matching, until back to the outermost layer means already found all the matchings
                 self.men[index].current = -1  # unmatch the previous layer of man and start to find other matchings
                 self.women[womanid].current = -1  # unmatch corresponding woman
-
-
-def test():
-    unit_count = 8
-
-    # the prefrence list include the number from 0 to 7, because index starts from 0
-    # menList =  [[4, 6, 0, 1, 5, 7, 3, 2],
-    #             [1, 2, 6, 4, 3, 0, 7, 5],
-    #             [7, 4, 0, 3, 5, 1, 2, 6],
-    #             [2, 1, 6, 3, 0, 5, 7, 4],
-    #             [6, 1, 4, 0, 2, 5, 7, 3],
-    #             [0, 5, 6, 4, 7, 3, 1, 2],
-    #             [1, 4, 6, 5, 2, 3, 7, 0],
-    #             [2, 7, 3, 4, 6, 1, 5, 0]]
-    # womenList = [[4, 2, 6, 5, 0, 1, 7, 3],
-    #              [7, 5, 2, 4, 6, 1, 0, 3],
-    #              [0, 4, 5, 1, 3, 7, 6, 2],
-    #              [7, 6, 2, 1, 3, 0, 4, 5],
-    #              [5, 3, 6, 2, 7, 0, 1, 4],
-    #              [1, 7, 4, 2, 3, 5, 6, 0],
-    #              [6, 4, 1, 0, 7, 5, 3, 2],
-    #              [6, 3, 0, 4, 1, 2, 5, 7]]
-
-    # menList =  [[2, 0, 4, 6, 3, 1, 7, 5],
-    #             [5, 0, 2, 3, 7, 6, 4, 1],
-    #             [6, 3, 2, 5, 4, 0, 1, 7],
-    #             [4, 2, 7, 1, 5, 0, 3, 6],
-    #             [3, 0, 1, 7, 6, 2, 5, 4],
-    #             [5, 1, 4, 6, 7, 3, 2, 0],
-    #             [6, 7, 0, 5, 1, 2, 3, 4],
-    #             [1, 5, 6, 0, 7, 2, 3, 4]]
-    # womenList = [[3, 2, 7, 0, 1, 4, 6, 5],
-    #              [2, 6, 4, 7, 5, 3, 0, 1],
-    #              [6, 4, 7, 2, 5, 1, 0, 3],
-    #              [5, 3, 1, 6, 2, 0, 4, 7],
-    #              [7, 6, 5, 4, 0, 3, 2, 1],
-    #              [4, 3, 6, 5, 1, 7, 2, 0],
-    #              [0, 3, 4, 5, 1, 7, 2, 6],
-    #              [1, 4, 3, 2, 6, 7, 0, 5]]
-
-    # ???????
-
-    menList = [[4, 5, 1, 6, 0, 2, 7, 3],
-               [1, 0, 7, 4, 5, 3, 2, 6],
-               [6, 5, 3, 1, 4, 2, 7, 0],
-               [7, 1, 4, 3, 2, 6, 0, 5],
-               [2, 0, 6, 5, 7, 4, 1, 3],
-               [3, 2, 5, 1, 0, 4, 7, 6],
-               [4, 1, 7, 0, 5, 6, 2, 3],
-               [4, 3, 0, 6, 2, 7, 1, 5]]
-
-    womenList = [[5, 6, 2, 3, 0, 1, 4, 7],
-                 [0, 7, 6, 1, 3, 5, 2, 4],
-                 [2, 4, 3, 7, 6, 1, 5, 0],
-                 [4, 6, 2, 7, 3, 1, 0, 5],
-                 [1, 2, 5, 7, 0, 3, 6, 4],
-                 [3, 4, 6, 2, 1, 5, 7, 0],
-                 [6, 5, 7, 4, 3, 2, 0, 1],
-                 [0, 7, 5, 3, 6, 1, 2, 4]]
-
-    # menList = [[0, 1, 2, 3],
-    #            [1, 0, 3, 2],
-    #            [2, 3, 0, 1],
-    #            [3, 2, 1, 0]]
-
-    # womenList = [[3, 2, 1, 0],
-    #              [2, 3, 0, 1],
-    #              [1, 0, 3, 2],
-    #              [0, 1, 2, 3]]
-
-    # menList,womenList = GSM.Generate(unit_count)
-
-    # # print the prefrence list of men and women
-    # for i in range(len(menList)):
-    #     print("man", i, "'s preference list: ", menList[i])
-    # for i in range(len(womenList)):
-    #     print("woman", i, "'s preference list: ", womenList[i])
-
-    sm = SearchSM(unit_count, menList, womenList)
-    sm.search_match(0)
-
-    for i in menList:
-        print(i)
-    print()
-
-    la = LatticeStructure(sm.SMList)
-
-    la.calculate_rotation()
-
-
-if __name__ == '__main__':
-    test()
 
 
 
